@@ -1,13 +1,17 @@
 {
   "name": "@vijayprwyd/react-mds",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": false,
   "main": "dist/index.js",
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ]
-  },  
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vijayprwyd/react-mds"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -20,7 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src/libs --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "build": "set NODE_ENV=production&& babel src/libs --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "clean": "rimraf dist"
@@ -46,6 +50,7 @@
   "devDependencies": {
     "@babel/cli": "^7.12.16",
     "@babel/preset-react": "^7.12.13",
+    "babel-preset-minify": "^0.5.1",
     "prettier": "2.2.1",
     "prop-types": "^15.7.2"
   }
