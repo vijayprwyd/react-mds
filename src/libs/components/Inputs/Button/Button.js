@@ -21,26 +21,25 @@ export function Button({
     //domref.current.parentNode.focus();
   }
 
-
   function handleKeyUp(event) {
     handleUpEvent(event);
-    typeof(props.onKeyUp) === 'function' && props.onKeyUp();
+    typeof props.onKeyUp === 'function' && props.onKeyUp();
   }
 
   function handleMouseUp(event) {
     handleUpEvent(event);
-    typeof(props.onMouseUp) === 'function'  && props.onMouseUp();
+    typeof props.onMouseUp === 'function' && props.onMouseUp();
   }
 
   return (
     <button
       {...props}
-      className={`btn btn-${shape} ${className || `btn-${variant}`} rippleAnimation  ${
-        disabled ? 'btn-disabled' : ''
-      }`}
+      className={`btn btn-${shape} ${
+        className || `btn-${variant}`
+      } rippleAnimation  ${disabled ? 'btn-disabled' : ''}`}
       onKeyUp={handleKeyUp}
       onMouseUp={handleMouseUp}
-      disabled = {disabled}
+      disabled={disabled}
     >
       {children}
 
@@ -58,11 +57,11 @@ Button.defaultProps = {
   disabled: false
 };
 
-Button.propTyoes = {
+Button.propTypes = {
   variant: string,
   className: string,
   children: any,
   rippleClassName: string,
   disabled: bool,
-  shape: string,
+  shape: string
 };

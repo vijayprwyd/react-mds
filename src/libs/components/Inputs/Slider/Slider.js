@@ -1,18 +1,27 @@
+import { func, number, string } from 'prop-types';
 import React, { useState } from 'react';
 import './slider.scss';
 
-export function Slider({ min, max, initialValue = 20, id, ariaValueText, label, onChange }) {
-  const [value, setValue] = useState(initialValue);
+export function Slider({
+  min,
+  max,
+  initialValue,
+  id,
+  ariaValueText,
+  label,
+  onChange
+}) {
+  const [value, setValue] = useState(initialValue || min);
   function handleChange(event) {
     setValue(event.target.value);
-    typeof(onChange) === 'function' && onChange(event);
+    typeof onChange === 'function' && onChange(event);
   }
 
   return (
     <div className="range-input-container">
       <div>
         <label className="range-input-label" htmlFor={id}>
-          { label }
+          {label}
         </label>
 
         <input
@@ -20,7 +29,7 @@ export function Slider({ min, max, initialValue = 20, id, ariaValueText, label, 
           type="range"
           min={min}
           max={max}
-          step = {1}
+          step={1}
           className="range-input"
           onChange={handleChange}
           value={value}
@@ -38,4 +47,14 @@ export function Slider({ min, max, initialValue = 20, id, ariaValueText, label, 
       <div className="range-input-value"> {value} </div>
     </div>
   );
+}
+
+Slider.propTypes = {
+  min: number.isRequired,
+  max: number.isRequired,
+  initialValue: number.isRequired,
+  id: string.isRequired,
+  ariaValueText: string.isRequired,
+  label: string.isRequired,
+  onChange: func
 }

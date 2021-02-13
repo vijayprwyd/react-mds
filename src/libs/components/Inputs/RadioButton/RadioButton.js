@@ -1,3 +1,4 @@
+import { any, string } from 'prop-types';
 import React, { useState, useRef } from 'react';
 import { createRipple } from '../../Feedback/Ripples/ripples';
 import './radiobutton.scss';
@@ -43,3 +44,8 @@ export function RadioButton({ name, children, ...rest }) {
     </label>
   );
 }
+
+RadioButton.propTypes = {
+  name: string.isRequired,
+  children: any
+};
