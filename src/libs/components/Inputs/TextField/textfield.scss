@@ -1,0 +1,72 @@
+@import "../../../constants/colours.scss";
+
+.textfield-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.text-input {
+  padding: 6px 16px;
+  list-style: none;
+  border: none;
+  border-bottom: 1px solid $light-black;
+  font-size: 16px;
+  padding: 5px 0px;
+  outline: none;
+  width: inherit;
+  box-sizing: border-box;
+  min-height: 31px;
+}
+
+.text-input:hover {
+  border-bottom: 2px solid black;
+}
+
+.text-input:focus {
+  border-bottom: 2px solid $blue-color;
+}
+
+.text-label {
+  color: $blue-color;
+  font-size: 14px;
+  position: relative;
+  transition-property: top, font-size;
+  transition-duration: 50ms;
+  height: 16.8px;
+}
+
+.label-blurred {
+  top: 20px;
+  color: $light-black;
+  font-size: 16px;
+}
+
+.label-focused {
+  top: 0px;
+}
+
+.label-error {
+  color: $light-red;
+}
+
+.input-error {
+  border-bottom: 2px solid $light-red;
+}
+
+.tf-button {
+  position: absolute;
+  bottom: -3px;
+  right: 0;
+  background: inherit;
+  color: rgba(0, 0, 0, 0.54);;
+  box-shadow: none;
+  margin: 0;
+}
+
+.tf-button:focus {
+  outline: none;
+  background-color: rgba(206, 206, 206, 0.6);
+  transition: background-color 250ms linear;
+  border: none;
+}

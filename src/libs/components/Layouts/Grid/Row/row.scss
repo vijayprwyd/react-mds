@@ -1,0 +1,11 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+@media(max-width: 1199px) {
+    .reverse {
+        flex-direction: row-reverse;
+    }
+}

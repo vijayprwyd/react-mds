@@ -1,0 +1,118 @@
+import React, { useState, useRef, useEffect } from 'react';
+import './select.scss';
+
+export function Select({
+  selected,
+  children,
+  placeHolder = '',
+  onChange,
+  error,
+  id
+}) {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
+  const ulRef = useRef(null);
+
+  useEffect(() => {
+    visible && ulRef.current.querySelector('.menu-item-selected').focus();
+  }, [visible]);
+
+  function hideOptions(evt) {
+    if (ref.current !== evt.target) {
+      setVisible(false);
+      document.removeEventListener('click', hideOptions);
+    }
+  }
+
+  function handleChange(event) {
+    ref.current.focus();
+    onChange(event);
+  }
+
+  function handleClick() {
+    setVisible(!visible);
+    document.addEventListener('click', hideOptions);
+  }
+
+  function handleSelectKeyPress(event) {
+    if (event.keyCode === 13 || event.charCode === 13) {
+      handleClick(event);
+    } else if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 32) {
+      setVisible(true);
+    }
+  }
+
+  function handleUlKeyPress(event) {
+    if (event.charCode === 13) {
+      setVisible(false);
+      ref.current.focus();
+      handleChange(event);
+    }
+  }
+
+  function handleUlKeyDown(event) {
+    if (event.keyCode === 9) {
+      hideOptions(event);
+      setVisible(false);
+      setTimeout(() => {
+        document.getElementById('#123').focus();
+      }, 0);
+    }
+
+    if (event.charCode === 13) {
+      handleChange(event);
+    } else if (event.keyCode === 38) {
+      (
+        event.target.previousSibling || event.target.parentNode.lastChild
+      ).focus();
+    } else if (event.keyCode === 40) {
+      (event.target.nextSibling || event.target.parentNode.firstChild).focus();
+    }
+  }
+
+  function handleUlClick(evt) {
+    if (evt.target.tagName !== 'UL') {
+      handleChange && handleChange(evt);
+    }
+  }
+
+  return (
+    <div className="select-container">
+      <label className={`select-label ${error ? 'select-error' : ''}`} id={id}>
+        Age
+      </label>
+
+      <div
+        ref={ref}
+        tabIndex="0"
+        onKeyDown={handleSelectKeyPress}
+        onClick={handleClick}
+        role="button"
+        aria-haspopup="listbox"
+        aria-labelledby = {`${id} xyz`}
+        id = 'xyz'
+        className={
+          selected
+            ? `selected-option ${error ? 'error-option' : ''}`
+            : 'selected-option select-placeholder'
+        }
+      >
+        {' '}
+        {selected || placeHolder}{' '}
+      </div>
+
+      {error && <div className="select-error"> Error </div>}
+
+      <ul
+        ref={ulRef}
+        onKeyPress={handleUlKeyPress}
+        onKeyDown={handleUlKeyDown}
+        onClick={handleUlClick}
+        className={`select-options ${visible ? 'select-show' : ''}`}
+        role="listbox"
+      >
+        {children}
+      </ul>
+    </div>
+  );
+}

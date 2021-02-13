@@ -1,0 +1,72 @@
+
+@import "../../../constants/colours.scss";
+
+.btn {
+    height: 36px;
+    line-height: 36px;
+    display: block;
+    padding: 0 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: $white;
+    margin: 10px;
+    border: none;
+    box-shadow: $black-box-shadow;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+.btn-text {
+  border: none;
+  background-color: inherit;
+  color: $blue-color;
+}
+
+.btn-text:hover {
+  background-color: rgb(247, 250, 253);
+  border: none;
+}
+
+.btn-contained {
+  background-color: $blue-color;
+  color: $blue-color;
+}
+
+.btn-contained:active {
+  background-color: $blue-color-active;
+}
+
+.btn-contained.blue:hover {
+  background-color: rgb(247, 250, 253);
+  border: none;
+}
+
+.btn-contained {
+  color: white;
+}
+
+.btn-disabled {
+  color: rgba(0, 0 , 0, 0.26);
+  box-shadow: none;
+  background-color:rgba(0, 0, 0, 0.12);
+}
+
+.btn-disabled:active {
+  background-color:rgba(0, 0, 0, 0.12);
+}
+
+.btn-circular {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color:  $blue-color;
+}
+
+.btn-circular:focus {
+  border:  2px solid black;
+  outline: none;
+}
