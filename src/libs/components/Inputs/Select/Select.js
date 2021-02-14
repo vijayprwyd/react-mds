@@ -1,8 +1,9 @@
+import { func, string } from 'prop-types';
 import React, { useState, useRef, useEffect } from 'react';
 import './select.scss';
 
 export function Select({
-  selected,
+  value,
   children,
   placeHolder = '',
   onChange,
@@ -12,10 +13,15 @@ export function Select({
   const [visible, setVisible] = useState(false);
   const ref = useRef(null);
   const ulRef = useRef(null);
-
   useEffect(() => {
-    visible && ulRef.current.querySelector('.menu-item-selected').focus();
-  }, [visible]);
+    const selectedNode = ulRef.current.querySelector(`[value = "${value}"]`);
+    if (selectedNode) {
+      selectedNode && selectedNode.classList.add('menu-item-selected');
+      ref.current.innerText = selectedNode.innerText;
+      console.log('Focusing');
+      visible && selectedNode && selectedNode.focus();
+    }
+  }, [value, visible]);
 
   function hideOptions(evt) {
     if (ref.current !== evt.target) {
@@ -25,38 +31,39 @@ export function Select({
   }
 
   function handleChange(event) {
-    ref.current.focus();
+    const prevSelected = ulRef.current.querySelector('.menu-item-selected');
+    prevSelected && prevSelected.classList.remove('menu-item-selected');
+    event.target.classList.add('menu-item-selected');
     onChange(event);
   }
 
-  function handleClick() {
+  function handleClick(event) {
+    event.preventDefault();
     setVisible(!visible);
     document.addEventListener('click', hideOptions);
   }
 
   function handleSelectKeyPress(event) {
+    if (event.keyCode === 9) return;
+    event.preventDefault();
     if (event.keyCode === 13 || event.charCode === 13) {
       handleClick(event);
-    } else if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 32) {
+    } else if (
+      event.keyCode === 38 ||
+      event.keyCode === 40 ||
+      event.keyCode === 32
+    ) {
       setVisible(true);
     }
   }
 
-  function handleUlKeyPress(event) {
-    if (event.charCode === 13) {
-      setVisible(false);
-      ref.current.focus();
-      handleChange(event);
-    }
-  }
-
   function handleUlKeyDown(event) {
-    if (event.keyCode === 9) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
       hideOptions(event);
       setVisible(false);
-      setTimeout(() => {
-        document.getElementById('#123').focus();
-      }, 0);
+      handleChange(event);
+      ref.current.focus();
     }
 
     if (event.charCode === 13) {
@@ -89,23 +96,22 @@ export function Select({
         onClick={handleClick}
         role="button"
         aria-haspopup="listbox"
-        aria-labelledby = {`${id} xyz`}
-        id = 'xyz'
+        aria-labelledby={`${id} xyz`}
+        id="xyz"
         className={
-          selected
+          value
             ? `selected-option ${error ? 'error-option' : ''}`
             : 'selected-option select-placeholder'
         }
       >
         {' '}
-        {selected || placeHolder}{' '}
+        {value ?? placeHolder}{' '}
       </div>
 
       {error && <div className="select-error"> Error </div>}
 
       <ul
         ref={ulRef}
-        onKeyPress={handleUlKeyPress}
         onKeyDown={handleUlKeyDown}
         onClick={handleUlClick}
         className={`select-options ${visible ? 'select-show' : ''}`}
@@ -116,3 +122,18 @@ export function Select({
     </div>
   );
 }
+
+Select.propTypes = {
+  value: string,
+  placeHolder: string,
+  onChange: func,
+  error: string,
+  id: string.isRequired
+};
+
+Select.defaultProps = {
+  value: '',
+  placeHolder: '',
+  onChange: () => {},
+  error: ''
+};

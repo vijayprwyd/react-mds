@@ -52,9 +52,9 @@ export function Slider({
 Slider.propTypes = {
   min: number.isRequired,
   max: number.isRequired,
-  initialValue: number.isRequired,
+  initialValue: number,
   id: string.isRequired,
-  ariaValueText: string.isRequired,
+  ariaValueText: string,
   label: string.isRequired,
   onChange: func
 }
