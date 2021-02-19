@@ -1,6 +1,6 @@
 {
   "name": "@vijayprwyd/react-mds",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -12,7 +12,9 @@
     "type": "git",
     "url": "https://github.com/vijayprwyd/react-mds"
   },
-  "dependencies": {},
+  "dependencies": {
+    "node-sass": "4.14.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "set NODE_ENV=production&& babel src/libs --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
@@ -45,7 +47,6 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "babel-preset-minify": "^0.5.1",
-    "node-sass": "^4.14.1",
     "prettier": "2.2.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
