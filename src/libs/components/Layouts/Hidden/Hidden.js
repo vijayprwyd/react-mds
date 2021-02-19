@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 export function Hidden() {
   const [windowWidth, setWindowWidth] = useState(window.outerWidth);
-  console.log(window.outerWidth);
   function handleWindowResize() {
     setWindowWidth(window.outerWidth);
   }

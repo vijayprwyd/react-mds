@@ -3,7 +3,7 @@ import './checkbox.scss';
 import { createRipple } from '../../Feedback/Ripples/ripples';
 import { any, string } from 'prop-types';
 
-export function Checkbox({ name, children, ...rest }) {
+export function Checkbox({ name, style, className, children, ...rest }) {
   const [focused, setFocused] = useState(false);
   const domref = useRef(null);
 
@@ -22,7 +22,7 @@ export function Checkbox({ name, children, ...rest }) {
   }
 
   return (
-    <label className="clabel">
+    <label className= {`clabel ${className}`} style = {style}>
       <span
         className={`span1 cbox-container rippleAnimation ${
           focused ? 'cfocused' : ''

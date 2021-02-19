@@ -5,7 +5,7 @@ import { Checkbox } from '../libs/components/Inputs/Checkbox/Checkbox';
 import { Switch } from '../libs/components/Inputs/Switch/Switch';
 import { SelectPlayground } from '../DemoSelect';
 import { Slider } from '../libs/components/Inputs/Slider/Slider';
-import { TextField } from '../libs/components/Inputs/TextField/Textfield';
+import { TextField } from '../libs/components/Inputs/TextField/TextField';
 
 function InputsPlayground() {
   return (

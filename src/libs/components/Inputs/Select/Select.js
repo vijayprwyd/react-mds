@@ -18,7 +18,6 @@ export function Select({
     if (selectedNode) {
       selectedNode && selectedNode.classList.add('menu-item-selected');
       ref.current.innerText = selectedNode.innerText;
-      console.log('Focusing');
       visible && selectedNode && selectedNode.focus();
     }
   }, [value, visible]);
