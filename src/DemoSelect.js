@@ -24,8 +24,7 @@ export function SelectPlayground() {
       }}
     >
       <Select
-        onChange={handleChange}
-        value={selected.value.toString()}
+        value="10"
         placeHolder={'value'}
         id="age"
       >

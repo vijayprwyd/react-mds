@@ -30,7 +30,7 @@ export function Select({
   }
 
   function handleChange(event) {
-    const prevSelected = ulRef.current.querySelector('.menu-item-selected');
+    const prevSelected = ulRef.current.querySelector('menu-item-selected');
     prevSelected && prevSelected.classList.remove('menu-item-selected');
     event.target.classList.add('menu-item-selected');
     onChange(event);
