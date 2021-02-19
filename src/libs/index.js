@@ -1,5 +1,6 @@
 import { Button } from "./components/Inputs/Button/Button";
 import { Checkbox } from "./components/Inputs/Checkbox/Checkbox";
+import { MenuItem } from "./components/Inputs/MenuItem/MenuItem";
 import { RadioButton } from "./components/Inputs/RadioButton/RadioButton";
 import { Select } from "./components/Inputs/Select/Select";
 import { Slider } from "./components/Inputs/Slider/Slider";
@@ -15,5 +16,6 @@ export {
     Switch,
     Slider,
     Card,
-    TextField
+    TextField,
+    MenuItem
 }
